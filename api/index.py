@@ -17,10 +17,7 @@ def news(response: Response, index: int = 0, origin: str = 'zhihu', cache: str =
     response.headers["Access-Control-Allow-Origin"] = "*"
     if origin == "undefined":
         origin = "zhihu"
-    data = new(index, origin)
-    json_data = json.dumps(data, ensure_ascii=True, indent=4)
-        
-    return(json_data)
+    return json.encoder(new(index, origin))
 
 
 if __name__ == "__main__":
