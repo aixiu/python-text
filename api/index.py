@@ -7,6 +7,7 @@ import uvicorn
 from fastapi import FastAPI, Response
 from api.crawler import main as new
 
+
 app = FastAPI()
 
 @app.get("/api")
