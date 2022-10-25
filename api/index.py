@@ -17,8 +17,8 @@ def news(response: Response, index: int = 0, origin: str = 'zhihu', cache: str =
     response.headers["Access-Control-Allow-Origin"] = "*"
     if origin == "undefined":
         origin = "zhihu"
-    return new(index, origin)  
+    return new(index, origin)
 
 
 if __name__ == "__main__":
-    uvicorn.run("index:app", host="127.0.0.1", port=62, log_level="info", reload=True)
+    uvicorn.run("index:app", host="127.0.0.1", port=62, log_level="info")
