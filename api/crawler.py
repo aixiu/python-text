@@ -23,7 +23,7 @@ def get_zhihu_days(index):
     news_list = []
     for i in day_news:
         i = i.text
-        i.replace(u'\u200b', '')
+        i.replace(u'\u200b', '').replace("\"","");
         if i != '':
             final_list.append(i)
             if '、' in i:
