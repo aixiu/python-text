@@ -23,12 +23,12 @@ def get_zhihu_days(index):
     news_list = []
     for i in day_news:
         i = i.text
-        i.replace('\u200b', '')
+        i.replace(u'\u200b', '')
         if i != '':
             final_list.append(i)
             if '、' in i:
-                new_str = '、'.join(i.split('、')[1:])
-                # new_str = i.split('、')[1]
+                # new_str = '、'.join(i.split('、')[1:])
+                new_str = i.split('、', 1)[1].replace(u'\u200b', '')  # 字符串切割1次，取第二个，并去除不可见字符\u200b
                 news_list.append(new_str)
     final_list[0], final_list[1] = final_list[1], final_list[0]
     return final_list, news_list
@@ -54,13 +54,14 @@ def get_163_days(index):
     news_list = []
     for i in list_all:        
         if "<" not in i and ">" not in i and i != '':
-            i.replace('\u200b', '')   # 查询资料发现’\u200b’是Unicode(万国码）中的零宽度字符，可以理解为不可见字符。这里去掉。
             if '、' in i and "微语" not in i:
                 # new_str = '、'.join(i.split('、')[1:])  # 如果列表中内容中有、号，则需要join将字符串用、号重新连起来
-                new_str = i.split('、')[1]  # 字符串切割
-                news_list.append(new_str)
-            final_list.append(i)
+                new_str = i.split('、', 1)[1].replace(u'\u200b', '') # 字符串切割1次，取第二个，并去除不可见字符\u200b
+                news_list.append(new_str)            
+            final_list.append(i.replace(u'\u200b', ''))
+
     return final_list, news_list
+
 
 
 def main(index, origin):
