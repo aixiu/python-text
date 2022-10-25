@@ -4,14 +4,20 @@
 # @Time  : 2022/10/25 11:46:50
 
 from http.server import BaseHTTPRequestHandler
-from cowpy import cow
+
+
+def getdata(name):
+    data = {'名字': name}
+    return data
 
 class handler(BaseHTTPRequestHandler):
-
     def do_GET(self):
+        path = self.path
+        user = path.split('?')[1]
+        data = getdata(user)
         self.send_response(200)
-        self.send_header('Content-type','text/plain')
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Content-type', 'application/json')
         self.end_headers()
-        message = cow.Cowacter().milk('Hello from Python from a Serverless Function!')
-        self.wfile.write(message.encode())
+        self.wfile.write(data)
         return
