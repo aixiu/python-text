@@ -6,7 +6,6 @@
 import uvicorn
 from fastapi import FastAPI, Response
 from api.crawler import main as new
-import json
 
 app = FastAPI()
 
