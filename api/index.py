@@ -20,7 +20,7 @@ def news(response: Response, index: int = 0, origin: str = 'zhihu', cache: str =
     data = new(index, origin)
     json_data = json.dumps(data, ensure_ascii=True, indent=4)
         
-    return(json_data.encode())
+    return(json_data)
 
 
 if __name__ == "__main__":
