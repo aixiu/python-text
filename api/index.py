@@ -6,18 +6,22 @@
 from http.server import BaseHTTPRequestHandler
 import json
 
-def getdata():    
+def getdata(name):    
     returndata = {
-        "total": 111,
-        "contributions": 222
+        "total": name,
+        "contributions": name
     }
     return returndata
+
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        data = getdata()
+        name = self.path
+        data = getdata(name)
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Content-type', 'application/json')
         self.end_headers()
         self.wfile.write(json.dumps(data).encode('utf-8'))
         return
+    
+    
