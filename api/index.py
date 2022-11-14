@@ -8,7 +8,6 @@ from fastapi import FastAPI, Response
 from api.crawler import main as new
 import json
 
-
 app = FastAPI()
 
 @app.get("/api")
@@ -22,4 +21,4 @@ def news(response: Response, index: int = 0, origin: str = 'zhihu', cache: str =
 
 
 if __name__ == "__main__":
-    uvicorn.run("index:app", host="127.0.0.1", port=62, log_level="info")
+    uvicorn.run("index:app", host="127.0.0.1", port=62, log_level="info", reload=True)
